@@ -1,110 +1,297 @@
-[![Bolt Open Source Codebase](./public/social_preview_index.jpg)](https://bolt.new)
+# 🤝 Contributing to BoltAI
 
-> Welcome to the **Bolt** open-source codebase! This repo contains a simple example app using the core components from bolt.new to help you get started building **AI-powered software development tools** powered by StackBlitz’s **WebContainer API**.
+Thank you for your interest in contributing to BoltAI! This document provides guidelines and information for contributors.
 
-### Why Build with Bolt + WebContainer API
+## 🚀 Getting Started
 
-By building with the Bolt + WebContainer API you can create browser-based applications that let users **prompt, run, edit, and deploy** full-stack web apps directly in the browser, without the need for virtual machines. With WebContainer API, you can build apps that give AI direct access and full control over a **Node.js server**, **filesystem**, **package manager** and **dev terminal** inside your users browser tab. This powerful combination allows you to create a new class of development tools that support all major JavaScript libraries and Node packages right out of the box, all without remote environments or local installs.
+### Prerequisites
 
-### What’s the Difference Between Bolt (This Repo) and [Bolt.new](https://bolt.new)?
+- Node.js 18+
+- npm or yarn
+- Git
+- A GitHub account
 
-- **Bolt.new**: This is the **commercial product** from StackBlitz—a hosted, browser-based AI development tool that enables users to prompt, run, edit, and deploy full-stack web applications directly in the browser. Built on top of the [Bolt open-source repo](https://github.com/stackblitz/bolt.new) and powered by the StackBlitz **WebContainer API**.
+### Development Setup
 
-- **Bolt (This Repo)**: This open-source repository provides the core components used to make **Bolt.new**. This repo contains the UI interface for Bolt as well as the server components, built using [Remix Run](https://remix.run/). By leveraging this repo and StackBlitz’s **WebContainer API**, you can create your own AI-powered development tools and full-stack applications that run entirely in the browser.
+1. **Fork the repository**
+   ```bash
+   # Fork on GitHub, then clone your fork
+   git clone https://github.com/YOUR_USERNAME/boltai.git
+   cd boltai
+   ```
 
-# Get Started Building with Bolt
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-Bolt combines the capabilities of AI with sandboxed development environments to create a collaborative experience where code can be developed by the assistant and the programmer together. Bolt combines [WebContainer API](https://webcontainers.io/api) with [Claude Sonnet 3.5](https://www.anthropic.com/news/claude-3-5-sonnet) using [Remix](https://remix.run/) and the [AI SDK](https://sdk.vercel.ai/).
+3. **Set up environment**
+   ```bash
+   cp .env.example .env.local
+   # Edit .env.local with your configuration
+   ```
 
-### WebContainer API
+4. **Set up database**
+   ```bash
+   npm run db:generate
+   npm run db:push
+   ```
 
-Bolt uses [WebContainers](https://webcontainers.io/) to run generated code in the browser. WebContainers provide Bolt with a full-stack sandbox environment using [WebContainer API](https://webcontainers.io/api). WebContainers run full-stack applications directly in the browser without the cost and security concerns of cloud hosted AI agents. WebContainers are interactive and editable, and enables Bolt's AI to run code and understand any changes from the user.
+5. **Start development server**
+   ```bash
+   npm run dev
+   ```
 
-The [WebContainer API](https://webcontainers.io) is free for personal and open source usage. If you're building an application for commercial usage, you can learn more about our [WebContainer API commercial usage pricing here](https://stackblitz.com/pricing#webcontainer-api).
+## 🎯 How to Contribute
 
-### Remix App
+### Reporting Bugs
 
-Bolt is built with [Remix](https://remix.run/) and
-deployed using [CloudFlare Pages](https://pages.cloudflare.com/) and
-[CloudFlare Workers](https://workers.cloudflare.com/).
+1. Check if the bug has already been reported
+2. Use the [Bug Report template](.github/ISSUE_TEMPLATE/bug_report.md)
+3. Provide detailed information about the bug
+4. Include steps to reproduce the issue
 
-### AI SDK Integration
+### Suggesting Features
 
-Bolt uses the [AI SDK](https://github.com/vercel/ai) to integrate with AI
-models. At this time, Bolt supports using Anthropic's Claude Sonnet 3.5.
-You can get an API key from the [Anthropic API Console](https://console.anthropic.com/) to use with Bolt.
-Take a look at how [Bolt uses the AI SDK](https://github.com/stackblitz/bolt.new/tree/main/app/lib/.server/llm)
+1. Check if the feature has already been suggested
+2. Use the [Feature Request template](.github/ISSUE_TEMPLATE/feature_request.md)
+3. Provide a clear description of the feature
+4. Explain why this feature would be useful
 
-## Prerequisites
+### Code Contributions
 
-Before you begin, ensure you have the following installed:
+1. **Create a feature branch**
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
 
-- Node.js (v20.15.1)
-- pnpm (v9.4.0)
+2. **Make your changes**
+   - Follow the coding standards
+   - Add tests if applicable
+   - Update documentation
 
-## Setup
+3. **Test your changes**
+   ```bash
+   npm run test
+   npm run lint
+   npm run type-check
+   ```
 
-1. Clone the repository (if you haven't already):
+4. **Commit your changes**
+   ```bash
+   git add .
+   git commit -m "feat: add your feature description"
+   ```
+
+5. **Push to your fork**
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+6. **Create a Pull Request**
+   - Use a descriptive title
+   - Provide a detailed description
+   - Link any related issues
+
+## 📝 Coding Standards
+
+### TypeScript/JavaScript
+
+- Use TypeScript for all new code
+- Follow ESLint configuration
+- Use meaningful variable and function names
+- Add JSDoc comments for complex functions
+
+### React Components
+
+- Use functional components with hooks
+- Follow the existing component structure
+- Use TypeScript interfaces for props
+- Add proper error handling
+
+### Styling
+
+- Use TailwindCSS for styling
+- Follow the existing design system
+- Ensure responsive design
+- Use consistent spacing and colors
+
+### Database
+
+- Use Prisma for database operations
+- Follow the existing schema patterns
+- Add proper error handling
+- Use transactions when needed
+
+## 🧪 Testing
+
+### Running Tests
 
 ```bash
-git clone https://github.com/stackblitz/bolt.new.git
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage
+npm run test:coverage
 ```
 
-2. Install dependencies:
+### Writing Tests
 
-```bash
-pnpm install
-```
+- Write tests for new features
+- Test both success and error cases
+- Use descriptive test names
+- Mock external dependencies
 
-3. Create a `.env.local` file in the root directory and add your Anthropic API key:
+## 📚 Documentation
 
-```
-ANTHROPIC_API_KEY=XXX
-```
+### Code Documentation
 
-Optionally, you can set the debug level:
+- Add JSDoc comments for functions
+- Document complex algorithms
+- Explain business logic
+- Update README when needed
 
-```
-VITE_LOG_LEVEL=debug
-```
+### API Documentation
 
-**Important**: Never commit your `.env.local` file to version control. It's already included in .gitignore.
+- Document API endpoints
+- Provide examples
+- Explain parameters and responses
+- Update when APIs change
 
-## Available Scripts
+## 🐛 Bug Fixes
 
-- `pnpm run dev`: Starts the development server.
-- `pnpm run build`: Builds the project.
-- `pnpm run start`: Runs the built application locally using Wrangler Pages. This script uses `bindings.sh` to set up necessary bindings so you don't have to duplicate environment variables.
-- `pnpm run preview`: Builds the project and then starts it locally, useful for testing the production build. Note, HTTP streaming currently doesn't work as expected with `wrangler pages dev`.
-- `pnpm test`: Runs the test suite using Vitest.
-- `pnpm run typecheck`: Runs TypeScript type checking.
-- `pnpm run typegen`: Generates TypeScript types using Wrangler.
-- `pnpm run deploy`: Builds the project and deploys it to Cloudflare Pages.
+### Before Fixing
 
-## Development
+1. Reproduce the bug locally
+2. Understand the root cause
+3. Check for similar issues
+4. Plan the fix
 
-To start the development server:
+### During Fixing
 
-```bash
-pnpm run dev
-```
+1. Make minimal changes
+2. Add tests for the fix
+3. Ensure no regressions
+4. Update documentation if needed
 
-This will start the Remix Vite development server.
+### After Fixing
 
-## Testing
+1. Test the fix thoroughly
+2. Update changelog
+3. Close related issues
+4. Document the fix
 
-Run the test suite with:
+## ✨ Feature Development
 
-```bash
-pnpm test
-```
+### Planning
 
-## Deployment
+1. Discuss the feature in an issue
+2. Get approval from maintainers
+3. Plan the implementation
+4. Break down into smaller tasks
 
-To deploy the application to Cloudflare Pages:
+### Implementation
 
-```bash
-pnpm run deploy
-```
+1. Create a feature branch
+2. Implement incrementally
+3. Add tests as you go
+4. Update documentation
 
-Make sure you have the necessary permissions and Wrangler is correctly configured for your Cloudflare account.
+### Review
+
+1. Ensure code quality
+2. Test thoroughly
+3. Update documentation
+4. Get code review
+
+## 🚀 Deployment
+
+### Testing Deployment
+
+1. Test on staging environment
+2. Verify all features work
+3. Check performance
+4. Test error handling
+
+### Production Deployment
+
+1. Follow deployment checklist
+2. Monitor after deployment
+3. Be ready to rollback
+4. Document any issues
+
+## 📋 Pull Request Guidelines
+
+### Before Submitting
+
+- [ ] Code follows style guidelines
+- [ ] Tests pass locally
+- [ ] Documentation is updated
+- [ ] No console.log statements
+- [ ] No sensitive data in code
+
+### PR Description
+
+- Clear title describing the change
+- Detailed description of what was changed
+- Link to related issues
+- Screenshots if UI changes
+- Testing instructions
+
+### Review Process
+
+1. Automated checks must pass
+2. Code review by maintainers
+3. Address feedback
+4. Merge when approved
+
+## 🏷️ Issue Labels
+
+- `bug` - Something isn't working
+- `enhancement` - New feature or request
+- `documentation` - Improvements to documentation
+- `help-wanted` - Extra attention is needed
+- `good-first-issue` - Good for newcomers
+- `deployment` - Deployment related issues
+
+## 💬 Communication
+
+### GitHub Discussions
+
+- Use for general questions
+- Share ideas and feedback
+- Ask for help
+- Discuss roadmap
+
+### Issues
+
+- Use for bugs and feature requests
+- Provide detailed information
+- Use appropriate templates
+- Be respectful and constructive
+
+## 🎉 Recognition
+
+Contributors will be recognized in:
+- README.md contributors section
+- Release notes
+- GitHub contributors page
+- Special thanks in documentation
+
+## 📞 Getting Help
+
+- Check existing issues and discussions
+- Read the documentation
+- Ask in GitHub Discussions
+- Contact maintainers if needed
+
+## 📄 License
+
+By contributing to BoltAI, you agree that your contributions will be licensed under the MIT License.
+
+---
+
+Thank you for contributing to BoltAI! 🚀
