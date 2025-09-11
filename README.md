@@ -136,9 +136,13 @@ project-builder/
 
 ## Deployment
 
-### Deploy to Vercel (Recommended)
+### Quick Deploy (Recommended)
 
-1. **Push to GitHub**
+#### Vercel (1-Click Deploy)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/boltai)
+
+1. **Connect GitHub Repository**
    ```bash
    git add .
    git commit -m "Initial commit"
@@ -152,9 +156,57 @@ project-builder/
    - Deploy!
 
 3. **Set up production database**
-   - For production, consider using PostgreSQL or MySQL
+   - Add Vercel Postgres database
    - Update `DATABASE_URL` in Vercel environment variables
    - Run `npx prisma db push` after deployment
+
+#### Railway
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/your-template)
+
+```bash
+npm install -g @railway/cli
+railway login
+railway init
+railway up
+```
+
+#### Render
+
+1. Connect your GitHub repository to [Render](https://render.com)
+2. Set build command: `npm install && npx prisma generate && npm run build`
+3. Set start command: `npm start`
+4. Add environment variables
+5. Deploy!
+
+### Manual Deployment
+
+```bash
+# Check environment
+npm run check-env
+
+# Build for production
+npm run build:prod
+
+# Deploy to specific platform
+npm run deploy:vercel
+npm run deploy:railway
+```
+
+### Docker Deployment
+
+```bash
+# Build Docker image
+docker build -t boltai .
+
+# Run container
+docker run -p 3000:3000 \
+  -e NEXTAUTH_URL=https://your-domain.com \
+  -e NEXTAUTH_SECRET=your-secret \
+  -e DATABASE_URL=your-database-url \
+  -e OPENAI_API_KEY=your-openai-key \
+  boltai
+```
 
 ### Environment Variables for Production
 

@@ -1,14 +1,13 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// MySQL schema for production
+// Use this schema for production with MySQL databases
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
 }
 
 model User {
@@ -55,7 +54,7 @@ model Project {
   id          String   @id @default(cuid())
   title       String
   description String?
-  content     String   @default("")
+  content     String   @default("") @db.Text
   isPublic    Boolean  @default(false)
   template    String?
   createdAt   DateTime @default(now())
@@ -68,7 +67,7 @@ model Project {
 model ProjectFile {
   id        String   @id @default(cuid())
   name      String
-  content   String   @default("")
+  content   String   @default("") @db.Text
   language  String
   path      String
   createdAt DateTime @default(now())
