@@ -56,8 +56,22 @@ model Project {
   description String?
   content     String   @default("")
   isPublic    Boolean  @default(false)
+  template    String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   userId      String?
   user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  files       ProjectFile[]
+}
+
+model ProjectFile {
+  id        String   @id @default(cuid())
+  name      String
+  content   String   @default("")
+  language  String
+  path      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  projectId String
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
 }

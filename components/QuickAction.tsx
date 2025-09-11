@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { Plus, FileText, Code, Palette, Database } from 'lucide-react';
+import { Plus, FileText, Code, Palette, Database, Sparkles } from 'lucide-react';
 
 interface QuickActionProps {
   onProjectCreate?: (title: string, type: string) => void;
@@ -31,7 +31,7 @@ export default function QuickAction({ onProjectCreate }: QuickActionProps) {
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-3xl mx-auto">
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Main Input */}
         <div className="relative">
@@ -39,16 +39,19 @@ export default function QuickAction({ onProjectCreate }: QuickActionProps) {
             type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            placeholder="What would you like to create today?"
-            className="w-full px-6 py-4 text-lg border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all"
+            placeholder="Create a React todo app with TypeScript and Tailwind CSS"
+            className="w-full px-6 py-5 text-xl border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all bg-white shadow-lg"
             autoFocus
           />
           <button
             type="submit"
             disabled={!inputValue.trim()}
-            className="absolute right-2 top-2 bottom-2 px-6 bg-primary-600 text-white rounded-lg hover:bg-primary-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="absolute right-3 top-3 bottom-3 px-8 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg"
           >
-            <Plus className="w-5 h-5" />
+            <div className="flex items-center space-x-2">
+              <Sparkles className="w-5 h-5" />
+              <span className="font-medium">Create</span>
+            </div>
           </button>
         </div>
 

@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import Layout from '@/components/Layout';
 import QuickAction from '@/components/QuickAction';
-import { ArrowRight, Zap, Shield, Users } from 'lucide-react';
+import { ArrowRight, Zap, Shield, Users, Sparkles, Code, Play } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function HomePage() {
   const { data: session } = useSession();
@@ -57,60 +58,83 @@ export default function HomePage() {
   return (
     <Layout>
       {/* Hero Section */}
-      <div className="bg-white">
+      <div className="bg-gradient-to-br from-gray-50 to-white min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Create, Build, and
-              <span className="text-primary-600"> Share</span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-              A modern platform for creating and managing your projects. 
-              Build anything from documents to code projects with ease.
-            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="flex items-center justify-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl flex items-center justify-center shadow-lg">
+                  <Sparkles className="w-8 h-8 text-white" />
+                </div>
+              </div>
+              
+              <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+                Build with
+                <span className="bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent"> AI</span>
+              </h1>
+              <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+                Create full-stack applications in seconds with AI-powered code generation. 
+                No setup, no configuration - just pure creativity.
+              </p>
+            </motion.div>
 
             {/* Quick Action */}
-            <div className="mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-16"
+            >
               <QuickAction onProjectCreate={handleProjectCreate} />
               {isCreating && (
-                <div className="mt-4 text-sm text-gray-500">
+                <div className="mt-4 text-sm text-gray-500 flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary-600 mr-2"></div>
                   Creating your project...
                 </div>
               )}
-            </div>
+            </motion.div>
 
             {/* Features */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Zap className="w-6 h-6 text-primary-600" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+            >
+              <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <Sparkles className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Lightning Fast</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">AI-Powered</h3>
                 <p className="text-gray-600">
-                  Create and edit projects instantly with our optimized interface.
+                  Generate code instantly with advanced AI models. From simple components to complex applications.
                 </p>
               </div>
 
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Shield className="w-6 h-6 text-primary-600" />
+              <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <Play className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Secure & Private</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Instant Preview</h3>
                 <p className="text-gray-600">
-                  Your projects are secure with optional public sharing capabilities.
+                  See your code come to life immediately with our integrated development environment.
                 </p>
               </div>
 
-              <div className="text-center">
-                <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-6 h-6 text-primary-600" />
+              <div className="text-center p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <Code className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Collaborative</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Full-Stack Ready</h3>
                 <p className="text-gray-600">
-                  Share your projects and collaborate with others seamlessly.
+                  Build complete applications with frontend, backend, and database integration.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

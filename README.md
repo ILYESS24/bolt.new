@@ -1,25 +1,34 @@
-# ProjectBuilder
+# BoltAI - AI-Powered Code Generator
 
-A modern web application for creating and managing projects, inspired by bolt.new but built from scratch with original code and design.
+A modern web application for AI-powered code generation and project creation, inspired by bolt.new but built from scratch with original code and design.
 
 ## Features
 
-- 🚀 **Quick Project Creation**: Create new projects with a single click from the homepage
-- 📝 **Rich Text Editing**: Edit projects with a clean, markdown-friendly interface
+- 🤖 **AI-Powered Code Generation**: Generate code instantly with OpenAI GPT-4 integration
+- 🚀 **Quick Project Creation**: Create new projects with a single prompt from the homepage
+- 💻 **Integrated Code Editor**: Monaco Editor with syntax highlighting and IntelliSense
+- 📁 **File Management**: Create, edit, and organize multiple files in your projects
+- 🖥️ **Integrated Terminal**: Run commands and see output directly in the browser
 - 🔐 **Authentication**: Secure authentication with email/password and OAuth (Google, GitHub)
 - 📊 **Dashboard**: Organize and manage all your projects in one place
 - 🔗 **Unique URLs**: Each project gets its own unique URL for easy sharing
 - 🌐 **Public/Private**: Control visibility of your projects
 - 📱 **Responsive Design**: Works perfectly on desktop and mobile devices
 - ⚡ **Fast & Modern**: Built with Next.js 14, TypeScript, and TailwindCSS
+- 🎨 **Modern UI**: Beautiful, bolt.new-inspired interface with animations
 
 ## Tech Stack
 
 - **Frontend**: Next.js 14, React 18, TypeScript
 - **Styling**: TailwindCSS with custom design system
+- **Code Editor**: Monaco Editor (VS Code editor)
+- **AI Integration**: OpenAI GPT-4 API
+- **State Management**: Zustand
 - **Authentication**: NextAuth.js with multiple providers
 - **Database**: SQLite with Prisma ORM
 - **Icons**: Lucide React
+- **Animations**: Framer Motion
+- **Notifications**: React Hot Toast
 - **Deployment**: Vercel-ready
 
 ## Getting Started
@@ -62,6 +71,9 @@ A modern web application for creating and managing projects, inspired by bolt.ne
    GOOGLE_CLIENT_SECRET="your-google-client-secret"
    GITHUB_CLIENT_ID="your-github-client-id"
    GITHUB_CLIENT_SECRET="your-github-client-secret"
+   
+   # OpenAI (required for AI features)
+   OPENAI_API_KEY="your-openai-api-key"
    ```
 
 4. **Set up the database**

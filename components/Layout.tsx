@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { SessionProvider } from 'next-auth/react';
 import Header from './Header';
 import Footer from './Footer';
+import Toaster from './Toaster';
 
 interface LayoutProps {
   children: ReactNode;
@@ -16,6 +17,7 @@ export default function Layout({ children }: LayoutProps) {
           {children}
         </main>
         <Footer />
+        <Toaster />
       </div>
     </SessionProvider>
   );
