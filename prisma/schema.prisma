@@ -53,7 +53,7 @@ model Session {
 
 model Project {
   id          String   @id @default(cuid())
-  title       String
+  name        String
   description String?
   content     String   @default("")
   isPublic    Boolean  @default(false)

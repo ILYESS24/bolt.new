@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAppStore } from '@/lib/store';
-import { File, Plus, Folder, FileText, Trash2, Edit3 } from 'lucide-react';
+import { File as FileIcon, Plus, Folder, FileText, Trash2, Edit3 } from 'lucide-react';
+import { File } from '@/types';
 
 export default function FileExplorer() {
   const { files, activeFile, setActiveFile, addFile, deleteFile } = useAppStore();

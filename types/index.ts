@@ -1,8 +1,8 @@
 export interface Project {
   id: string;
-  title: string;
+  name: string;
   description?: string;
-  content: string;
+  content?: string;
   createdAt: Date;
   updatedAt: Date;
   userId?: string;
@@ -27,7 +27,7 @@ export interface User {
 }
 
 export interface CreateProjectData {
-  title: string;
+  name: string;
   description?: string;
   content?: string;
   isPublic?: boolean;
@@ -36,7 +36,7 @@ export interface CreateProjectData {
 }
 
 export interface UpdateProjectData {
-  title?: string;
+  name?: string;
   description?: string;
   content?: string;
   isPublic?: boolean;

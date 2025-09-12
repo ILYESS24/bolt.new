@@ -7,6 +7,8 @@ import CodeEditor from '@/components/CodeEditor';
 import FileExplorer from '@/components/FileExplorer';
 import AIPanel from '@/components/AIPanel';
 import Terminal from '@/components/Terminal';
+import AutoFixPanel from '@/components/AutoFixPanel';
+import AppGenerator from '@/components/AppGenerator';
 import { 
   Play, 
   Save, 
@@ -43,6 +45,8 @@ export default function EditorPage() {
   
   const [showAIPanel, setShowAIPanel] = useState(true);
   const [showTerminal, setShowTerminal] = useState(false);
+  const [showAutoFix, setShowAutoFix] = useState(false);
+  const [showAppGenerator, setShowAppGenerator] = useState(false);
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -167,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          title: currentProject.title,
+          title: currentProject.name,
           description: currentProject.description,
           files: files,
         }),
@@ -243,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <span className="text-white font-bold text-xs">B</span>
             </div>
             <span className="font-semibold text-gray-900 dark:text-white">
-              {currentProject.title}
+              {currentProject.name}
             </span>
           </div>
         </div>
@@ -350,6 +354,34 @@ document.addEventListener('DOMContentLoaded', function() {
                 </motion.div>
               )}
             </AnimatePresence>
+
+            {/* Auto-Fix Panel */}
+            <AnimatePresence>
+              {showAutoFix && (
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: 350 }}
+                  exit={{ width: 0 }}
+                  className="border-l border-gray-200 dark:border-gray-700"
+                >
+                  <AutoFixPanel projectId={id as string} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* App Generator Panel */}
+            <AnimatePresence>
+              {showAppGenerator && (
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: 400 }}
+                  exit={{ width: 0 }}
+                  className="border-l border-gray-200 dark:border-gray-700"
+                >
+                  <AppGenerator />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           {/* Terminal */}
@@ -386,6 +418,26 @@ document.addEventListener('DOMContentLoaded', function() {
           >
             <span>AI</span>
             {showAIPanel ? <Minimize2 className="w-3 h-3" /> : <Maximize2 className="w-3 h-3" />}
+          </button>
+          
+          <button
+            onClick={() => setShowAutoFix(!showAutoFix)}
+            className={`flex items-center space-x-1 ${
+              showAutoFix ? 'text-primary-600' : 'text-gray-600 dark:text-gray-400'
+            }`}
+          >
+            <span>Auto-Fix</span>
+            {showAutoFix ? <Minimize2 className="w-3 h-3" /> : <Maximize2 className="w-3 h-3" />}
+          </button>
+          
+          <button
+            onClick={() => setShowAppGenerator(!showAppGenerator)}
+            className={`flex items-center space-x-1 ${
+              showAppGenerator ? 'text-primary-600' : 'text-gray-600 dark:text-gray-400'
+            }`}
+          >
+            <span>Generator</span>
+            {showAppGenerator ? <Minimize2 className="w-3 h-3" /> : <Maximize2 className="w-3 h-3" />}
           </button>
           
           <button

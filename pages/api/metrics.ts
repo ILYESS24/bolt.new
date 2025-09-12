@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../auth/[...nextauth]';
+import { authOptions } from './auth/[...nextauth]';
 import { getMetrics } from '@/lib/metrics';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

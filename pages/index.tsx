@@ -11,7 +11,7 @@ export default function HomePage() {
   const router = useRouter();
   const [isCreating, setIsCreating] = useState(false);
 
-  const handleProjectCreate = async (title: string, type: string) => {
+  const handleProjectCreate = async (projectTitle: string, type: string) => {
     setIsCreating(true);
     try {
       const response = await fetch('/api/projects', {
@@ -20,7 +20,7 @@ export default function HomePage() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          title,
+          projectTitle,
           description: `A new ${type} project`,
           content: getDefaultContent(type),
           isPublic: false,
@@ -40,7 +40,7 @@ export default function HomePage() {
     }
   };
 
-  const getDefaultContent = (type: string) => {
+  const getDefaultContent = (type: string, title: string = 'My Project') => {
     switch (type) {
       case 'document':
         return '# ' + title + '\n\nStart writing your document here...';

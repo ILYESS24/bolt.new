@@ -11,8 +11,8 @@ export interface File {
 export interface Project {
   id: string;
   name: string;
-  description: string;
-  files: File[];
+  description?: string;
+  files?: File[];
   createdAt: Date;
   updatedAt: Date;
   isPublic: boolean;

@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]';
-import { prisma } from '@/lib/db';
+import prisma from '@/lib/db';
 import { UpdateProjectData } from '@/types';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -33,7 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       // Check if user has access to the project
-      if (!project.isPublic && (!session || project.userId !== session.user.id)) {
+      if (!project.isPublic && (!session || !session.user || project.userId !== (session.user as any).id)) {
         return res.status(403).json({ error: 'Access denied' });
       }
 
@@ -56,14 +56,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(404).json({ error: 'Project not found' });
       }
 
-      if (project.userId !== session.user.id) {
+      if (project.userId !== (session.user as any).id) {
         return res.status(403).json({ error: 'Access denied' });
       }
 
-      const { title, description, content, isPublic }: UpdateProjectData = req.body;
+      const { name, description, content, isPublic }: UpdateProjectData = req.body;
 
       const updateData: any = {};
-      if (title !== undefined) updateData.title = title.trim();
+      if (name !== undefined) updateData.name = name.trim();
       if (description !== undefined) updateData.description = description?.trim() || null;
       if (content !== undefined) updateData.content = content;
       if (isPublic !== undefined) updateData.isPublic = isPublic;
@@ -92,7 +92,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(404).json({ error: 'Project not found' });
       }
 
-      if (project.userId !== session.user.id) {
+      if (project.userId !== (session.user as any).id) {
         return res.status(403).json({ error: 'Access denied' });
       }
 
